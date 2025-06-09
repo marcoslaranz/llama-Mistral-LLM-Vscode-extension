@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="48" fill="transparent"/>
+  <ellipse cx="128" cy="128" rx="80" ry="60" fill="#38bdf8"/>
+  <text x="50%" y="55%" text-anchor="middle" fill="#ffffff" font-size="96" font-family="Segoe UI, Arial, sans-serif" dy=".3em" font-weight="bold">M</text>
+  <text x="50%" y="85%" text-anchor="middle" fill="#2d3748" font-size="48" font-family="Segoe UI, Arial, sans-serif" dy=".3em" font-weight="bold">Llama</text>
+</svg>
