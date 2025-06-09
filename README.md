@@ -1,4 +1,4 @@
-# mistral-llm-ext README
+# Mistral-LLM-Ext README
 
 Use Ollama to run Mistral LLM models in Visual Studio Code.
 
