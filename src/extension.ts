@@ -70,6 +70,9 @@ export function activate(context: vscode.ExtensionContext) {
             <button id="askBtn">Ask</button>
             <div id="response"></div>
             <button id="copyAllBtn" style="margin-top: 1rem;">Copy Full Response</button>
+            <div id="thinking" style="display:none; margin-top: 1rem; color: #555; font-size: 0.95em;">
+              <em>Thinking...</em>
+            </div>
             <div style="margin-top: 0.5rem; color: #555; font-size: 0.95em;">
               <strong>Tip:</strong> Click any code block to copy just the code, or use the button above to copy the entire response.
             </div>
@@ -78,18 +81,27 @@ export function activate(context: vscode.ExtensionContext) {
             <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
             <script>
                 const vscode = acquireVsCodeApi();
+                let thinkingShown = false;
                 document.getElementById('askBtn').addEventListener('click', () => {
                     const text = document.getElementById('prompt').value;
                     vscode.postMessage({ command: 'chat', text });
+                    // Show thinking indicator immediately
+                    document.getElementById('thinking').style.display = 'block';
+                    thinkingShown = true;
                 });
                 window.addEventListener('message', event => {
                     const { command, text } = event.data;
                     if (command === 'chatResponse') {
+                        // Hide thinking indicator on first response
+                        if (thinkingShown) {
+                            document.getElementById('thinking').style.display = 'none';
+                            thinkingShown = false;
+                        }
                         marked.setOptions({
-                        highlight: function(code, lang) {
-                            return hljs.highlightAuto(code).value;
-                        }});
-                        console.log(text);
+                            highlight: function(code, lang) {
+                                return hljs.highlightAuto(code).value;
+                            }
+                        });
                         let html = marked.parse(text);
                         document.getElementById("response").innerHTML =  html;
                         document.querySelectorAll('pre code').forEach((el) => {
