@@ -69,6 +69,10 @@ export function activate(context: vscode.ExtensionContext) {
             <textarea id="prompt" rows="3" placeholder="Ask something..."></textarea><br />
             <button id="askBtn">Ask</button>
             <div id="response"></div>
+            <button id="copyAllBtn" style="margin-top: 1rem;">Copy Full Response</button>
+            <div style="margin-top: 0.5rem; color: #555; font-size: 0.95em;">
+              <strong>Tip:</strong> Click any code block to copy just the code, or use the button above to copy the entire response.
+            </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
             <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -90,7 +94,26 @@ export function activate(context: vscode.ExtensionContext) {
                         document.getElementById("response").innerHTML =  html;
                         document.querySelectorAll('pre code').forEach((el) => {
                             hljs.highlightElement(el);
+                            // Make code blocks easily selectable for copy
+                            el.style.userSelect = 'all';
+                            el.style.cursor = 'pointer';
+                            el.title = 'Click to copy code';
+                            el.onclick = function(e) {
+                                navigator.clipboard.writeText(el.innerText);
+                            };
                         });
+                    }
+                });
+                // Copy full response button
+                document.getElementById('copyAllBtn').addEventListener('click', () => {
+                    const el = document.getElementById('response');
+                    if (el) {
+                        const temp = document.createElement('textarea');
+                        temp.value = el.innerText;
+                        document.body.appendChild(temp);
+                        temp.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(temp);
                     }
                 });
             </script>
