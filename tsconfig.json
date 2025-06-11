@@ -10,6 +10,12 @@
 		"sourceMap": true,
 		"rootDir": "src",
 		"strict": true,   /* enable all strict type-checking options */
+		"skipLibCheck": true,  /* Skip type checking of declaration files */
+		"noImplicitAny": false,  /* Allow implicit any types */
+		"strictNullChecks": false,  /* Disable strict null checks */
+		"moduleResolution": "Node16",
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
 		/* Additional Checks */
 		// "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
 		// "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */

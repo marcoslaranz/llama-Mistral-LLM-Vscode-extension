@@ -1,0 +1,9 @@
+architecture-beta
+    group ext(cloud)[VS Code Extension]
+    service webview(server)[Webview UI] in ext
+    service backend(server)[Extension Backend] in ext
+    group ollama(cloud)[Ollama LLM Service]
+    service mistral(database)[Mistral Model] in ollama
+    webview:R -- L:backend
+    backend:R --> L:mistral
+    mistral:R -- L:webview
