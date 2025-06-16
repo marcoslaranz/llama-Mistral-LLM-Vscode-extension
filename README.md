@@ -89,11 +89,43 @@ This may take while to responding depending of your resources of hardware and th
 - **Custom Prompts**: Create and manage custom prompts for specific tasks or queries.
 - **Configuration Options**: Easily configure the extension settings to suit your workflow.
 ## Installation
+In the command line:
+
+### Option One
+
+#### If you are using MS-DOS:
+```sh
+set OLLAMA_DEBUG=0
+ollama serve
+```
+
+### Option 2
+##### If you are using PowerShell
+
+```sh
+$env:OLLAMA_DEBUG="0"
+ollama serve
+```
+
+### Then load the LLM 
+
+```sh
+ollama run mistral:latest
+```
+
+#### Please, note that this will take some time depend on your internet connection
+
+#### When it all finish, run the steps below:
+
+
+
 1. Open Visual Studio Code.
 2. Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or by pressing `Ctrl+Shift+X`.
 3. Search for "Mistral LLM Extension".
 4. Click on the Install button to install the extension.
 5. After installation, reload Visual Studio Code to activate the extension.
+
+
 ## Usage
 1. **Open the Command Palette**: Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS).
 
